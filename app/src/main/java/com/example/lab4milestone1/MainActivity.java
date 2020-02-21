@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String Tag = "MainActivity";
     private Button buttonStartThread;
     private volatile boolean stopThread = false;
 
@@ -36,7 +38,16 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public void run(){
-            this.seconds = seconds;
+            //this.seconds = seconds;
+            for(int i = 0; i<seconds; i++){
+                runOnUiThread(new Runnable(){
+                    @Override
+                    public void run(){
+                        buttonStartThread.setText("Start");
+                    }
+                });
+                return;
+            }
         }
     }
 }
